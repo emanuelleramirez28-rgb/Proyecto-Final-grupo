@@ -1,0 +1,6 @@
+Manifest-Version: 1.0
+Main-Class: Main
+Class-Path: lib/h2-2.4.240.jar
+Implementation-Title: AutoElite
+Implementation-Version: 1.0.0
+Implementation-Vendor: AutoElite Systems
