@@ -8,10 +8,10 @@ import java.util.*;
 /**
  * DAO para gestionar operaciones CRUD de imágenes
  */
-public class ImagenDAO {
+public class Imagen {
     private Connection conexion;
 
-    public ImagenDAO() throws Exception {
+    public Imagen() throws Exception {
         this.conexion = ConexionDB.getInstance().getConexion();
     }
 

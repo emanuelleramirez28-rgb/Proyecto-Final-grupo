@@ -8,10 +8,10 @@ import java.util.*;
 /**
  * DAO para gestionar operaciones CRUD de usuarios
  */
-public class UsuarioDAO {
+public class Usuario {
     private Connection conexion;
 
-    public UsuarioDAO() throws Exception {
+    public Usuario() throws Exception {
         this.conexion = ConexionDB.getInstance().getConexion();
     }
 

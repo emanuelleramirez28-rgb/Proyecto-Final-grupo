@@ -8,10 +8,10 @@ import java.util.*;
 /**
  * DAO para gestionar operaciones CRUD de sucursales
  */
-public class SucursalDAO {
+public class Sucursal {
     private Connection conexion;
 
-    public SucursalDAO() throws Exception {
+    public Sucursal() throws Exception {
         this.conexion = ConexionDB.getInstance().getConexion();
     }
 

@@ -8,10 +8,10 @@ import java.util.*;
 /**
  * DAO para gestionar operaciones CRUD de vehículos
  */
-public class VehiculoDAO {
+public class Vehiculo {
     private Connection conexion;
 
-    public VehiculoDAO() throws Exception {
+    public Vehiculo() throws Exception {
         this.conexion = ConexionDB.getInstance().getConexion();
     }
 
