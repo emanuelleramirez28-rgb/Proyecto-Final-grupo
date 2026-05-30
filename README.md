@@ -1,6 +1,6 @@
 # AutoElite - Sistema de Concesionarios de Vehículos Usados
 
-##  Descripción
+##   Descripción
 AutoElite es una aplicación de escritorio desarrollada en Java Swing para la gestión integral de concesionarios de vehículos usados. Incluye módulos de administración de inventario, gestión de sucursales, galería multimedia y dashboard estadístico.
 
 ##  Requisitos del Sistema
