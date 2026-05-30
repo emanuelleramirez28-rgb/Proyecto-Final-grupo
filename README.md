@@ -1,14 +1,14 @@
 # AutoElite - Sistema de Concesionarios de Vehículos Usados
 
-## Descripción
+##  Descripción
 AutoElite es una aplicación de escritorio desarrollada en Java Swing para la gestión integral de concesionarios de vehículos usados. Incluye módulos de administración de inventario, gestión de sucursales, galería multimedia y dashboard estadístico.
 
-## Requisitos del Sistema
+##  Requisitos del Sistema
 - **Java JDK 17 o superior**
 - **Windows, Linux o macOS**
 - 200 MB de espacio en disco
 
-## Instalación
+##  Instalación
 
 1. Asegúrate de tener instalado Java JDK 17+:
    ```bash
@@ -18,33 +18,33 @@ AutoElite es una aplicación de escritorio desarrollada en Java Swing para la ge
 
 2. El proyecto ya incluye H2 Database Engine en la carpeta `lib/`
 
-## Compilación
+##  Compilación
 
-### En Windows:
+###  En Windows:
 ```bash
 compile.bat
 ```
 
-### En Linux/macOS:
+###  En Linux/macOS:
 ```bash
 chmod +x compile.sh
 ./compile.sh
 ```
 
-## Ejecución
+##  Ejecución
 
-### En Windows:
+###  En Windows:
 ```bash
 run.bat
 ```
 
-### En Linux/macOS:
+###  En Linux/macOS:
 ```bash
 chmod +x run.sh
 ./run.sh
 ```
 
-## Credenciales de Prueba
+##  Credenciales de Prueba
 
 ### Admin:
 - **Usuario:** admin
