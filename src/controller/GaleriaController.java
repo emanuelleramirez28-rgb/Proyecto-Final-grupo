@@ -11,6 +11,10 @@ import java.awt.image.BufferedImage;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.List;
 
 /**
@@ -144,15 +148,16 @@ public class GaleriaController {
      */
     private void copiarYGuardarImagen(File archivo) throws Exception {
         String nombre = System.currentTimeMillis() + "_" + archivo.getName();
-        File destino = new File("resources/images/" + nombre);
-        
+        Path destinoDir = Paths.get("resources", "images");
+        Files.createDirectories(destinoDir);
+        Path destino = destinoDir.resolve(nombre);
+
         // Copiar archivo
-        Files.copy(archivo.toPath(), destino.toPath(), 
-            java.nio.file.StandardCopyOption.REPLACE_EXISTING);
+        Files.copy(archivo.toPath(), destino, StandardCopyOption.REPLACE_EXISTING);
 
         // Guardar en BD
         boolean esPrincipal = imagenes.isEmpty(); // La primera es principal
-        Imagen imagen = new Imagen(idVehiculo, destino.getAbsolutePath(), esPrincipal);
+        Imagen imagen = new Imagen(idVehiculo, destino.toAbsolutePath().toString(), esPrincipal);
         imagenDAO.insertarImagen(imagen);
     }
 
@@ -213,10 +218,3 @@ public class GaleriaController {
     }
 }
 
-// Importaciones necesarias que faltaban
-class Files {
-    public static void copy(java.nio.file.Path source, java.nio.file.Path target, 
-                          java.nio.file.CopyOption... options) throws java.io.IOException {
-        java.nio.file.Files.copy(source, target, options);
-    }
-}

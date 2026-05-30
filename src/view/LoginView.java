@@ -70,8 +70,10 @@ public class LoginView extends JFrame {
 
         // Botón Login
         loginButton = new JButton("Ingresar");
-        loginButton.setBackground(new Color(0, 102, 204));
+        loginButton.setBackground(new Color(0, 174, 239));
         loginButton.setForeground(Color.WHITE);
+        loginButton.setOpaque(true);
+        loginButton.setBorderPainted(false);
         loginButton.setFont(new Font("Arial", Font.BOLD, 12));
         gbc.gridx = 0;
         gbc.gridy = 4;

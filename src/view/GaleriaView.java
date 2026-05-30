@@ -31,30 +31,45 @@ public class GaleriaView extends JDialog {
         // Panel inferior con botones
         JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 10));
         anteriorButton = new JButton("← Anterior");
-        anteriorButton.setBackground(new Color(0, 102, 204));
+        anteriorButton.setBackground(new Color(0, 174, 239));
         anteriorButton.setForeground(Color.WHITE);
+        anteriorButton.setOpaque(true);
+        anteriorButton.setBorderPainted(false);
+        anteriorButton.setFont(new Font("Arial", Font.BOLD, 12));
         buttonPanel.add(anteriorButton);
 
         siguienteButton = new JButton("Siguiente →");
-        siguienteButton.setBackground(new Color(0, 102, 204));
+        siguienteButton.setBackground(new Color(0, 174, 239));
         siguienteButton.setForeground(Color.WHITE);
+        siguienteButton.setOpaque(true);
+        siguienteButton.setBorderPainted(false);
+        siguienteButton.setFont(new Font("Arial", Font.BOLD, 12));
         buttonPanel.add(siguienteButton);
 
         buttonPanel.add(new JSeparator(SwingConstants.VERTICAL));
 
         agregarButton = new JButton("+ Agregar Imagen");
-        agregarButton.setBackground(new Color(0, 153, 0));
+        agregarButton.setBackground(new Color(0, 174, 239));
         agregarButton.setForeground(Color.WHITE);
+        agregarButton.setOpaque(true);
+        agregarButton.setBorderPainted(false);
+        agregarButton.setFont(new Font("Arial", Font.BOLD, 12));
         buttonPanel.add(agregarButton);
 
         establecerPrincipalButton = new JButton("✓ Principal");
-        establecerPrincipalButton.setBackground(new Color(255, 153, 0));
+        establecerPrincipalButton.setBackground(new Color(0, 174, 239));
         establecerPrincipalButton.setForeground(Color.WHITE);
+        establecerPrincipalButton.setOpaque(true);
+        establecerPrincipalButton.setBorderPainted(false);
+        establecerPrincipalButton.setFont(new Font("Arial", Font.BOLD, 12));
         buttonPanel.add(establecerPrincipalButton);
 
         eliminarButton = new JButton("✕ Eliminar");
-        eliminarButton.setBackground(new Color(204, 0, 0));
+        eliminarButton.setBackground(new Color(0, 174, 239));
         eliminarButton.setForeground(Color.WHITE);
+        eliminarButton.setOpaque(true);
+        eliminarButton.setBorderPainted(false);
+        eliminarButton.setFont(new Font("Arial", Font.BOLD, 12));
         buttonPanel.add(eliminarButton);
 
         // Panel de información

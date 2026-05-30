@@ -2,6 +2,7 @@ package controller;
 
 import view.InventarioView;
 import view.GaleriaView;
+import view.AgregarVehiculoDialog;
 import dao.VehiculoDAO;
 import dao.SucursalDAO;
 import dao.ImagenDAO;
@@ -9,6 +10,7 @@ import exceptions.*;
 import model.*;
 
 import javax.swing.*;
+import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
@@ -28,6 +30,7 @@ public class InventarioController {
     private ImagenDAO imagenDAO;
     private String rolUsuario;
     private List<Vehiculo> vehiculosActuales;
+    private List<Sucursal> sucursales;
 
     public InventarioController(InventarioView inventarioView, String rol) throws Exception {
         this.inventarioView = inventarioView;
@@ -36,6 +39,11 @@ public class InventarioController {
         this.sucursalDAO = new SucursalDAO();
         this.imagenDAO = new ImagenDAO();
         this.vehiculosActuales = new ArrayList<>();
+        this.sucursales = sucursalDAO.obtenerTodas();
+        if (this.sucursales.isEmpty()) {
+            crearSucursalesIniciales();
+            this.sucursales = sucursalDAO.obtenerTodas();
+        }
 
         // Configurar permisos según rol
         if (rol.equals("VENDEDOR")) {
@@ -177,11 +185,43 @@ public class InventarioController {
      * Abre el diálogo para agregar un nuevo vehículo
      */
     private void agregarVehiculo() {
-        // Esta es una versión simplificada. En una aplicación real, 
-        // se abriría un diálogo con un formulario completo
-        JOptionPane.showMessageDialog(inventarioView, 
-            "Funcionalidad de agregar vehículo requiere una interfaz adicional",
-            "Información", JOptionPane.INFORMATION_MESSAGE);
+        try {
+            Frame owner = JOptionPane.getFrameForComponent(inventarioView);
+            AgregarVehiculoDialog dialog = new AgregarVehiculoDialog(owner, sucursales);
+            Vehiculo vehiculo = dialog.mostrarDialogo();
+            if (vehiculo == null) {
+                return;
+            }
+
+            vehiculoDAO.insertarVehiculo(vehiculo);
+            inventarioView.mostrarExito("Vehículo agregado correctamente");
+            cargarVehiculos();
+        } catch (InvalidPriceException e) {
+            inventarioView.mostrarError("Precio inválido: " + e.getMessage());
+        } catch (DatabaseException e) {
+            inventarioView.mostrarError("Error al guardar vehículo: " + e.getMessage());
+        } catch (Exception e) {
+            inventarioView.mostrarError("Error inesperado al agregar vehículo: " + e.getMessage());
+        }
+    }
+
+    private void crearSucursalesIniciales() throws DatabaseException {
+        String[][] datos = {
+            {"Cofiño Stahl", "Guatemala", "Av. Reforma 10-50"},
+            {"Excel Automotriz", "Guatemala", "Boulevard Los Próceres 23"},
+            {"Grupo QContinental", "Guatemala", "Km 12.8 Carretera a El Salvador"},
+            {"Motores Grupo", "Guatemala", "Calzada Roosevelt 45"},
+            {"Los Tres", "Guatemala", "6a Avenida Norte 15"},
+            {"IVESA", "Guatemala", "Zona 4, 4ta Avenida"},
+            {"Canella", "Guatemala", "Zona 10, calle principal"},
+            {"Autocentro (Isuzu)", "Guatemala", "Km 9.5 Carretera a El Salvador"},
+            {"Didea", "Guatemala", "Plaza Mundo"}
+        };
+
+        for (String[] fila : datos) {
+            Sucursal sucursal = new Sucursal(fila[0], fila[1], fila[2]);
+            sucursalDAO.insertarSucursal(sucursal);
+        }
     }
 
     /**
@@ -194,9 +234,30 @@ public class InventarioController {
             return;
         }
 
-        JOptionPane.showMessageDialog(inventarioView, 
-            "Funcionalidad de editar vehículo requiere una interfaz adicional",
-            "Información", JOptionPane.INFORMATION_MESSAGE);
+        try {
+            Vehiculo vehiculo = vehiculoDAO.obtenerVehiculo(id);
+            if (vehiculo == null) {
+                inventarioView.mostrarError("Vehículo no encontrado");
+                return;
+            }
+
+            Frame owner = JOptionPane.getFrameForComponent(inventarioView);
+            AgregarVehiculoDialog dialog = new AgregarVehiculoDialog(owner, sucursales, vehiculo);
+            Vehiculo vehiculoEditado = dialog.mostrarDialogo();
+            if (vehiculoEditado == null) {
+                return;
+            }
+
+            vehiculoDAO.actualizarVehiculo(vehiculoEditado);
+            inventarioView.mostrarExito("Vehículo actualizado correctamente");
+            cargarVehiculos();
+        } catch (InvalidPriceException e) {
+            inventarioView.mostrarError("Precio inválido: " + e.getMessage());
+        } catch (DatabaseException e) {
+            inventarioView.mostrarError("Error al actualizar vehículo: " + e.getMessage());
+        } catch (Exception e) {
+            inventarioView.mostrarError("Error inesperado al editar vehículo: " + e.getMessage());
+        }
     }
 
     /**

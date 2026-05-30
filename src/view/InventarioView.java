@@ -85,8 +85,11 @@ public class InventarioView extends JPanel {
 
         // Botón de búsqueda
         searchButton = new JButton("Buscar");
-        searchButton.setBackground(new Color(0, 153, 0));
+        searchButton.setBackground(new Color(0, 174, 239));
         searchButton.setForeground(Color.WHITE);
+        searchButton.setOpaque(true);
+        searchButton.setBorderPainted(false);
+        searchButton.setFont(new Font("Arial", Font.BOLD, 12));
         gbc.gridx = 5;
         gbc.gridy = 1;
         filterPanel.add(searchButton, gbc);
@@ -94,23 +97,35 @@ public class InventarioView extends JPanel {
         // Panel de botones de acción
         JPanel actionPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
         agregarButton = new JButton("+ Agregar");
-        agregarButton.setBackground(new Color(0, 102, 204));
+        agregarButton.setBackground(new Color(0, 174, 239));
         agregarButton.setForeground(Color.WHITE);
+        agregarButton.setOpaque(true);
+        agregarButton.setBorderPainted(false);
+        agregarButton.setFont(new Font("Arial", Font.BOLD, 12));
         actionPanel.add(agregarButton);
 
         editarButton = new JButton("✎ Editar");
-        editarButton.setBackground(new Color(255, 153, 0));
+        editarButton.setBackground(new Color(0, 174, 239));
         editarButton.setForeground(Color.WHITE);
+        editarButton.setOpaque(true);
+        editarButton.setBorderPainted(false);
+        editarButton.setFont(new Font("Arial", Font.BOLD, 12));
         actionPanel.add(editarButton);
 
         eliminarButton = new JButton("✕ Eliminar");
-        eliminarButton.setBackground(new Color(204, 0, 0));
+        eliminarButton.setBackground(new Color(0, 174, 239));
         eliminarButton.setForeground(Color.WHITE);
+        eliminarButton.setOpaque(true);
+        eliminarButton.setBorderPainted(false);
+        eliminarButton.setFont(new Font("Arial", Font.BOLD, 12));
         actionPanel.add(eliminarButton);
 
         galeriaButton = new JButton("📷 Galería");
-        galeriaButton.setBackground(new Color(102, 102, 204));
+        galeriaButton.setBackground(new Color(0, 174, 239));
         galeriaButton.setForeground(Color.WHITE);
+        galeriaButton.setOpaque(true);
+        galeriaButton.setBorderPainted(false);
+        galeriaButton.setFont(new Font("Arial", Font.BOLD, 12));
         actionPanel.add(galeriaButton);
 
         // Tabla de vehículos

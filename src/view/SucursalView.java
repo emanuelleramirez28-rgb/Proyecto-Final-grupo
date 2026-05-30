@@ -22,23 +22,35 @@ public class SucursalView extends JPanel {
         // Panel de botones
         JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
         agregarButton = new JButton("+ Agregar Sucursal");
-        agregarButton.setBackground(new Color(0, 102, 204));
+        agregarButton.setBackground(new Color(0, 174, 239));
         agregarButton.setForeground(Color.WHITE);
+        agregarButton.setOpaque(true);
+        agregarButton.setBorderPainted(false);
+        agregarButton.setFont(new Font("Arial", Font.BOLD, 12));
         buttonPanel.add(agregarButton);
 
         editarButton = new JButton("✎ Editar");
-        editarButton.setBackground(new Color(255, 153, 0));
+        editarButton.setBackground(new Color(0, 174, 239));
         editarButton.setForeground(Color.WHITE);
+        editarButton.setOpaque(true);
+        editarButton.setBorderPainted(false);
+        editarButton.setFont(new Font("Arial", Font.BOLD, 12));
         buttonPanel.add(editarButton);
 
         eliminarButton = new JButton("✕ Eliminar");
-        eliminarButton.setBackground(new Color(204, 0, 0));
+        eliminarButton.setBackground(new Color(0, 174, 239));
         eliminarButton.setForeground(Color.WHITE);
+        eliminarButton.setOpaque(true);
+        eliminarButton.setBorderPainted(false);
+        eliminarButton.setFont(new Font("Arial", Font.BOLD, 12));
         buttonPanel.add(eliminarButton);
 
         exportarButton = new JButton("⬇ Exportar Inventario");
-        exportarButton.setBackground(new Color(0, 153, 0));
+        exportarButton.setBackground(new Color(0, 174, 239));
         exportarButton.setForeground(Color.WHITE);
+        exportarButton.setOpaque(true);
+        exportarButton.setBorderPainted(false);
+        exportarButton.setFont(new Font("Arial", Font.BOLD, 12));
         buttonPanel.add(exportarButton);
 
         // Tabla de sucursales

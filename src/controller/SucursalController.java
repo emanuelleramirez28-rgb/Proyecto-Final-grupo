@@ -1,6 +1,7 @@
 package controller;
 
 import view.SucursalView;
+import view.AgregarSucursalDialog;
 import dao.SucursalDAO;
 import exceptions.DatabaseException;
 import model.Sucursal;
@@ -8,6 +9,7 @@ import model.Sucursal;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.Frame;
 import java.io.FileWriter;
 import java.io.PrintWriter;
 import java.util.List;
@@ -81,9 +83,24 @@ public class SucursalController {
      * Agrega una nueva sucursal
      */
     private void agregarSucursal() {
-        JOptionPane.showMessageDialog(sucursalView,
-            "Funcionalidad de agregar sucursal requiere una interfaz adicional",
-            "Información", JOptionPane.INFORMATION_MESSAGE);
+        try {
+            Frame owner = JOptionPane.getFrameForComponent(sucursalView);
+            AgregarSucursalDialog dialog = new AgregarSucursalDialog(owner);
+            Sucursal sucursal = dialog.mostrarDialogo();
+
+            if (sucursal == null) {
+                return;
+            }
+
+            sucursalDAO.insertarSucursal(sucursal);
+            sucursalView.mostrarExito("Sucursal agregada correctamente");
+            cargarSucursales();
+
+        } catch (DatabaseException e) {
+            sucursalView.mostrarError("Error al guardar sucursal: " + e.getMessage());
+        } catch (Exception e) {
+            sucursalView.mostrarError("Error inesperado: " + e.getMessage());
+        }
     }
 
     /**
@@ -96,9 +113,31 @@ public class SucursalController {
             return;
         }
 
-        JOptionPane.showMessageDialog(sucursalView,
-            "Funcionalidad de editar sucursal requiere una interfaz adicional",
-            "Información", JOptionPane.INFORMATION_MESSAGE);
+        try {
+            Sucursal sucursal = sucursalDAO.obtenerSucursal(id);
+
+            if (sucursal == null) {
+                sucursalView.mostrarError("Sucursal no encontrada");
+                return;
+            }
+
+            Frame owner = JOptionPane.getFrameForComponent(sucursalView);
+            AgregarSucursalDialog dialog = new AgregarSucursalDialog(owner, sucursal);
+            Sucursal sucursalEditada = dialog.mostrarDialogo();
+
+            if (sucursalEditada == null) {
+                return;
+            }
+
+            sucursalDAO.actualizarSucursal(sucursalEditada);
+            sucursalView.mostrarExito("Sucursal actualizada correctamente");
+            cargarSucursales();
+
+        } catch (DatabaseException e) {
+            sucursalView.mostrarError("Error al editar sucursal: " + e.getMessage());
+        } catch (Exception e) {
+            sucursalView.mostrarError("Error inesperado: " + e.getMessage());
+        }
     }
 
     /**
